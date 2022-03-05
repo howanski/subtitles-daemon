@@ -1,0 +1,23 @@
+# https://github.com/compose-spec/compose-spec/blob/master/spec.md
+version: '3.5'
+services:
+  subtitles-daemon:
+    environment:
+      - OPENSUBTITLES_USER=_YOUR_USER_
+      - OPENSUBTITLES_API_KEY=_YOUR_PASSWORD_
+      - OPENSUBTITLES_LANG=_YOUR_LOCALE_
+      - OPENSUBTITLES_FREQUENCY=1800
+      - USER=1000
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: "subtitles-daemon"
+    volumes:
+      - ./../data:/videos
+    restart: always
+    network_mode: host
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"

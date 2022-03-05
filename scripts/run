@@ -1,0 +1,5 @@
+#!/bin/bash
+cd ../docker
+clear
+docker-compose build --pull --parallel --no-cache --force-rm
+docker-compose up --detach
